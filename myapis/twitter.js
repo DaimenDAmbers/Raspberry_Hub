@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  console.log('Doc Ready!');
+  console.log('Twitter Doc Ready!');
 
   $('#submit').click(function () {
     var search_term = {
