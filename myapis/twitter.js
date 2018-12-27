@@ -3,7 +3,8 @@ $(document).ready(function () {
 
   $('#submit').click(function () {
     var search_term = {
-      q: 'bowery'
+      q: $('#search').val(),
+      count: $('#count').val()
     };
     search(search_term);
   });
@@ -13,13 +14,25 @@ $(document).ready(function () {
 function search(search_term) {
   console.log("searching for ");
   console.dir(search_term);
+  var URL = 'https://api.twitter.com/1.1/search/tweets.json?' + $.param(search_term);
+  $.getJSON(URL, function (data) {
+    updateTwitterDOM(data)
+  });
 
-  $.ajax({
+  /*$.ajax({
     url: 'https://api.twitter.com/1.1/search/tweets.json?' + $.param(search_term),
-    dataType: 'jsonp',
+    header: {
+      authorization: ApiKey.consumerApiKey,
+    },
+    dataType: 'json',
     success: function(data){
       console.dir(data);
       //$('#tweets').html(data);
     }
-  });
+  });*/
 }
+
+/*function updateTwitterDOM(data) {
+  var tweets = data.statuses;
+  $('#tweets').html(tweets);
+}*/

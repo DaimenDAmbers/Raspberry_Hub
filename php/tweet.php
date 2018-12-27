@@ -6,17 +6,16 @@
   $access_token_secret = 'tYHwDwLnl1AV56ENC13YkW7NDjllM5NcVmsCX6L4sy9E9';
 
   //Include library
-  require "C:\Users\dambers\New folder\htdocs\Raspberry_Hub\twitteroauth\autoload.php"
+  require "../twitteroauth/autoload.php";
   //require "../twitteroauth/autoload.php";
   use Abraham\TwitterOAuth\TwitterOAuth;
   // Connect to APIs
   $conn = new TwitterOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
   $content = $conn->get("account/verify_credentials");
 
-  $new_status = $conn->post("statuses/update", ["status" => "This tweet sent via the Twitter API. Don't mind me just breaking things."]);
+  //$new_status = $conn->post("statuses/update", ["status" => "This tweet sent via the Twitter API. Don't mind me just breaking things."]);
 
   // Get tweets
-  $statuses = $conn->get("statues/home_timeline", ["count" => 25, "exclude_replies" => true]);
+  $statuses = $conn->get("statuses/home_timeline", ["name" => 'Kings', "count" => 2, "exclude_replies" => true]);
 
-  print_r($statues);
- ?>
+  print_r($statuses);

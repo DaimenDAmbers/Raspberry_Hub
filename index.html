@@ -12,17 +12,26 @@
     <script src="myapis/weather.js"></script>
     <script src="myapis/testing.js"></script>
     <script src="myapis/apikeys.js"></script>
+    <script src="myapis/updatetwitter.js"></script>
   </head>
+
   <body>
     <div class="container">
       <h1>Twitter API</h1>
       <ol id="tweets"><ol>
+        <form>
+          <input type="text" id="search" name="search" placeholder="search"/>
+          <input type="number" id="count" name="count" placeholder="count"/>
+        </form>
       <a id="submit" href="#">Get Tweets</a>
       <div>
         <div id="test2"></div>
         <div id="date"></div>
         <a href="#" id="submit2">Get Weather</a>
       </div>
+      <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I could vibe out to Lo-fi hip hop all day</p>&mdash; SwagMoney (@DRockSwagMoney) <a href="https://twitter.com/DRockSwagMoney/status/1078032403564806144?ref_src=twsrc%5Etfw">December 26, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
     </div>
 
   </body>
