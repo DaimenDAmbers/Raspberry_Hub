@@ -1,0 +1,23 @@
+{
+  "name": "raspberry_hub",
+  "version": "1.0.0",
+  "description": "Twitter API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node testing.js",
+    "test": "Test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DRockSwagMoney/Raspberry_Hub.git"
+  },
+  "author": "Daimen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DRockSwagMoney/Raspberry_Hub/issues"
+  },
+  "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}
