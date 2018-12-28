@@ -5,3 +5,10 @@ var ApiKey = {
   accessToken: "2200974972-xyb9647TzntMqtGseJPGJXs2cT5Ahv0YWwtRqkL",
   accessTokenSecret: "tYHwDwLnl1AV56ENC13YkW7NDjllM5NcVmsCX6L4sy9E9"
 };
+
+function auth() {
+  this.consumerApiKey = ApiKey.consumerApiKey;
+  this.consumerApiSecretKey = ApiKey.consumerApiSecretKey;
+  this.accessToken = ApiKey.accessToken;
+  this.accessTokenSecret = ApiKey.accessTokenSecret;
+}
