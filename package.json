@@ -1,11 +1,11 @@
 {
   "name": "raspberry_hub",
   "version": "1.0.0",
-  "description": "Twitter API",
-  "main": "index.js",
+  "description": "Twitter API calls",
+  "main": "config.js",
   "scripts": {
     "start": "node testing.js",
-    "test": "Test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/DRockSwagMoney/Raspberry_Hub/issues"
   },
-  "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme",
-  "dependencies": {
-    "twit": "^2.2.11"
-  }
+  "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme"
 }

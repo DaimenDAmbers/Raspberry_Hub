@@ -92,7 +92,7 @@ var timeline = function () {
       if (!err) {
         var text = data;
         console.log(text);
-        document.getElementById("test3").innerHTML = text.user + " " + text.text;
+        //document.getElementById("test3").innerHTML = text.user + " " + text.text;
     }
     else {
         console.log('Error with retieving timeline');
