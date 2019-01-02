@@ -129,7 +129,7 @@ var timeline = function () {
         var text = data;
         console.log(text);
         //$('#test3').html(text);
-        document.getElementById('test3').innerHTML = text;
+        //document.getElementById('test3').innerHTML = text;
     }
     else {
         console.log('Error with retieving timeline');
