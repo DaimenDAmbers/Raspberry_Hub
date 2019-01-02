@@ -1,5 +1,21 @@
+// //$(document).ready(function() {
+//   timeline(setInterval, 10000000);
+// });
 var Twit = require('twit');
 var config = require('./config.js');
+var dt = require('./myfirstmodule');
+var http = require('http');
+
+var url = require('url');
+var fs = require('fs');
+http.createServer(function (req, res) {
+  fs.readFile('index.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
+}).listen(8080);
+
 
 var Twitter = new Twit(config);
 
@@ -58,7 +74,7 @@ var retweet = function() {
   });
 }
 // Retweet every 50 minutes
-retweet();
+//retweet();
 //retweet every 2 minutes
 //setInterval(retweet, 120000);
 
@@ -92,7 +108,7 @@ var favoriteTweet = function(){
   });
 }
 // grab & 'favorite' as soon as program is running...
-favoriteTweet();
+//favoriteTweet();
 // 'favorite' a tweet in every 60 minutes
 //setInterval(favoriteTweet, 3600000);
 
@@ -113,6 +129,7 @@ var timeline = function () {
         var text = data;
         console.log(text);
         //$('#test3').html(text);
+        document.getElementById('test3').innerHTML = text;
     }
     else {
         console.log('Error with retieving timeline');
@@ -121,4 +138,4 @@ var timeline = function () {
   });
 }
 //pull home timeline
-//timeline();
+timeline();
