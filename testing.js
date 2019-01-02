@@ -137,5 +137,6 @@ var timeline = function () {
     //var obj = json_decode($response , true);
   });
 }
+const app = document.getElementById('root');
 //pull home timeline
 timeline();
