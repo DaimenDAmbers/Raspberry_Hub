@@ -1,7 +1,7 @@
 var Twit = require('twit');
 var config = require('./config.js');
 
-var Twitter = new Twit(config)
+var Twitter = new Twit(config);
 
 //
 //  tweet 'hello world!'
@@ -11,20 +11,39 @@ var Twitter = new Twit(config)
 //find the latest tweets according to the 'q' in params
 var retweet = function() {
   var params = {
-    q: '#IrrespnsibleTour, #irrespnsibletour', //Required
+    q: '@mxicanmami_', //Required
     result_type: 'recent',
-    lang: 'en'
+    count: 1,
+    lang: 'en',
   }
 
   Twitter.get('search/tweets', params, function(err, data) {
     // if there are no errors
     if(!err) {
       // grab ID of tweet to RETWEET
+      console.log(data);
       var retweetId = data.statuses[0].id_str;
+      console.log(retweetId);
       //Tell TWITTER to retweet
       Twitter.post('statuses/retweet/:id', {id: retweetId }, function(err, response) {
           if (response) {
             console.log('Retweeted!');
+
+            var reply_params = {
+              status: 'Hi Maria!',
+              in_reply_to_status_id: retweetId,
+              auto_populate_reply_metadata: true,
+            }
+            console.log(reply_params);
+
+            Twitter.post('statuses/update', reply_params, function (err, response) {
+              if(response) {
+                console.log('Statues updated!')
+              }
+              if (err) {
+                console.log('Error updating status...')
+              }
+            });
           }
           // if there was an error while tweeting
           if (err) {
@@ -39,15 +58,16 @@ var retweet = function() {
   });
 }
 // Retweet every 50 minutes
-//retweet();
+retweet();
 //retweet every 2 minutes
 //setInterval(retweet, 120000);
 
 var favoriteTweet = function(){
   var params = {
-      q: '@DRockSwagMoney',  // REQUIRED
+      q: '@mxicanmami_',  // REQUIRED
       result_type: 'recent',
-      lang: 'en'
+      lang: 'en',
+      //until: '2016-01-22',
   }
   // find the tweet
   Twitter.get('search/tweets', params, function(err,data){
@@ -72,7 +92,7 @@ var favoriteTweet = function(){
   });
 }
 // grab & 'favorite' as soon as program is running...
-//favoriteTweet();
+favoriteTweet();
 // 'favorite' a tweet in every 60 minutes
 //setInterval(favoriteTweet, 3600000);
 
@@ -92,7 +112,7 @@ var timeline = function () {
       if (!err) {
         var text = data;
         console.log(text);
-        document.getElementById("test3").innerHTML = text.user + " " + text.text;
+        //$('#test3').html(text);
     }
     else {
         console.log('Error with retieving timeline');
@@ -101,4 +121,4 @@ var timeline = function () {
   });
 }
 //pull home timeline
-timeline();
+//timeline();
