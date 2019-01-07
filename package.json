@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/DRockSwagMoney/Raspberry_Hub/issues"
   },
-  "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme"
+  "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme",
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
 }
