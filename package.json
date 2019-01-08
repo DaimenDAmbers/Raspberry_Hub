@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme",
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "superagent": "^4.1.0"
   }
 }
