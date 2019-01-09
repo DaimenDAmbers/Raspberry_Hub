@@ -1,7 +1,7 @@
 $(document).ready(function () {
   console.log('Weather Doc Ready!');
 
-    var URL = "http://dataservice.accuweather.com/currentconditions/v1/30303?apikey=" + ApiKey.weatherApiKey;
+    var URL = "http://dataservice.accuweather.com/currentconditions/v1/30318?apikey=" + ApiKey.weatherApiKey;
     console.log(URL);
     $.getJSON(URL, function (data) {
       console.dir(data);
@@ -16,6 +16,6 @@ function updateDOM(data) {
   var unit = data[0].Temperature.Imperial.Unit;
   $('#date').html(date);
   $('#temp').html(temp);
-  $('.unit').html(unit)
+  $('.unit').html(unit);
 
 }
