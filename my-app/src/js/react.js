@@ -1,6 +1,7 @@
 //Mock api https://4fce6549-08e0-4e54-b413-326bbce34ec7.mock.pstmn.io
+import React, { Component } from 'react';
 
-class MyComponent extends React.Component {
+class MyComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,4 +53,5 @@ class MyComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<MyComponent/>,document.getElementById('root'));
+export default MyComponent;
+//ReactDOM.render(<MyComponent/>,document.getElementById('app'));
