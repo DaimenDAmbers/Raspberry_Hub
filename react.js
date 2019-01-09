@@ -6,18 +6,18 @@ class MyComponent extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: [0]
+      items: []
     };
   }
 
   componentDidMount() {
-    fetch("https://reqres.in/api/users/2")
+    fetch("http://5c3626bb6fc11c0014d3300a.mockapi.io/api/v1/users")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.items
+            items: result //this.state.items where items = can be mapped to this.state later
           });
         },
         // Note: it's important to handle errors here
@@ -41,9 +41,9 @@ class MyComponent extends React.Component {
     } else {
       return (
         <ul>
-          {items.map(data => (
-            <li key={data.id}>
-              {data.first_name} {data.last_name}
+          {items.map(item => (
+            <li key={item.id}>
+              {item.name} {item.blog[0].id}
             </li>
           ))}
         </ul>
