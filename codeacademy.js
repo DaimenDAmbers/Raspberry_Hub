@@ -1,11 +1,11 @@
-class Button extends React.Component {
-  scream() {
-    alert('AAAAAAAAHHH!!!!!');
-  }
 
+class App extends React.Component {
   render() {
-    return <button onClick={this.scream}>AAAAAH!</button>;
+    return <div>
+            <NavBar />
+            <p>Work in progress</p>
+          </div>
   }
 }
 
-ReactDOM.render(<Button />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

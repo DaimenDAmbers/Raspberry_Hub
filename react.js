@@ -43,7 +43,7 @@ class MyComponent extends React.Component {
         <ul>
           {items.map(item => (
             <li key={item.id}>
-              {item.name} {item.blog[0].id}
+              {item.name} {item.avatar}
             </li>
           ))}
         </ul>
