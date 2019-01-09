@@ -1,7 +1,31 @@
+var http = require('http');
+var dt = require('./mymodule.js');
+var my = require('./newmodule.js');
 var Twit = require('twit');
 var config = require('./config.js');
-
 var Twitter = new Twit(config);
+
+// http.createServer(function (req, res) {
+//   res.writeHead(200, {'Content-Type': 'text/html'});
+//   res.write("My Timeline " + my.mytimeline());
+//   console.log("I am currently running...")
+  // //$(document).ready(function() {
+//   timeline(setInterval, 10000000);
+// });
+
+
+// var url = require('url');
+// var fs = require('fs');
+// http.createServer(function (req, res) {
+//   fs.readFile('index.html', function(err, data) {
+//     res.writeHead(200, {'Content-Type': 'text/html'});
+//     res.write(data);
+//     res.end();
+//   });
+// }).listen(8080);
+
+
+
 
 //
 //  tweet 'hello world!'
@@ -58,7 +82,7 @@ var retweet = function() {
   });
 }
 // Retweet every 50 minutes
-retweet();
+//retweet();
 //retweet every 2 minutes
 //setInterval(retweet, 120000);
 
@@ -92,7 +116,7 @@ var favoriteTweet = function(){
   });
 }
 // grab & 'favorite' as soon as program is running...
-favoriteTweet();
+//favoriteTweet();
 // 'favorite' a tweet in every 60 minutes
 //setInterval(favoriteTweet, 3600000);
 
@@ -108,11 +132,17 @@ var timeline = function () {
       count: 1,
       exclude_replies: true
   }
-    Twitter.get('statuses/home_timeline', params, function(err, data) {
+    Twitter.get('statuses/home_timeline', params, function(err, data, response) {
       if (!err) {
-        var text = data;
+        var text = data[0];
+        var example = data[0].created_at;
+        //var string = JSON.stringify(text);
+        //var obj = JSON.parse(text);
+        //var logger = document.getElementById('test3');
         console.log(text);
-        //$('#test3').html(text);
+        console.log(example);
+        //const app = document.getElementById('root');
+        //logger.innerHTML = obj;
     }
     else {
         console.log('Error with retieving timeline');
@@ -121,4 +151,6 @@ var timeline = function () {
   });
 }
 //pull home timeline
-//timeline();
+timeline();
+//res.end();
+//}).listen(8080);
