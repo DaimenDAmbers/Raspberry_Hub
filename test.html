@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <!--<script type="text/jsx" src="api.js"></script>-->
+  </head>
+  <body>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <button onclick="myFunction()">Click Me</button>
+  </body>
+  <script>
+  url = "http://5c3626bb6fc11c0014d3300a.mockapi.io/api/v1/users";
+  function myFunction() {
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("test2").innerHTML = this.responseText;
+      }
+    }
+    request.open('GET', url, true);
+    request.send();
+  }
+  </script>
+</html>

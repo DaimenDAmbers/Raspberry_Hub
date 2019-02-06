@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Raspberry Hub</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -14,12 +15,14 @@
     <script src="https://fb.me/react-dom-0.14.3.min.js"></script>-->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
-    <script src="myapis/apikeys.js"></script>
-    <!--<script type="text/javascript" src="myapis/weather.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>-->
+    <!--<script src="myapis/apikeys.js"></script>-->
+    <!--<script type="text/javascript" src="myapis/weather.js"></script>
+
     <script type="text/jsx" src="codeacademy.js"></script>
     <script type="text/jsx" src="react.js"></script>
-    <script type="text/jsx" src="myapis/reactweather.js"></script>
+    <script type="text/jsx" src="myapis/reactweather.js"></script>-->
+    <script type="text/javascript" src="api.js"></script>
   </head>
 
   <body>
@@ -32,6 +35,7 @@
             <div id="root"></div>
             <div id="app"></div>
             <div id="weather"></div>
+            <button onclick="myFunction()">Click Me</button>
             <div>
               <div>Weather Date</div>
               <div id="date"></div>
@@ -42,27 +46,21 @@
               </div>
             </div>
           </div>
+        </div>
+<script>
+  url = "http://5c3626bb6fc11c0014d3300a.mockapi.io/api/v1/users";
+  function myFunction() {
+    var request = new XMLHttpRequest();
 
-        <!--<div class="col-sm-6">
-            <div>
-                <a class="twitter-timeline" href="https://twitter.com/DRockSwagMoney">
-                  Tweets by @DRockSwagMoney </a>
-            </div>
-        </div>-->
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("test2").innerHTML = this.responseText;
+      }
+    }
+    request.open('GET', url, true);
+    request.send();
+  }
+</script>
     </div>
-<!--<script>
-twttr.widgets.createTimeline(
-  {
-    sourceType: "profile",
-    screenName: "TwitterDev"
-  },
-  document.getElementById("test3")
-);
-</script>-->
-</div>
-
-
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!--<script src="testing.js"></script>-->
   </body>
 </html>
