@@ -1,6 +1,4 @@
 var http = require('http');
-var dt = require('./mymodule.js');
-var my = require('./newmodule.js');
 var Twit = require('twit');
 var config = require('./config.js');
 var Twitter = new Twit(config);
