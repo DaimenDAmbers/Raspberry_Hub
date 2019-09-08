@@ -1,11 +1,11 @@
 import requests
 import base64
 
-consumerKey = "Zi2YZlt5GrkFdnPDAQM840sYi"
-consumerSecret = "WbeHhAF5utlGnJ4lY1ELIf4lnFKbDJmut8OPUsxiJNWi5G3mHS"
-accessToken = "2200974972-xyb9647TzntMqtGseJPGJXs2cT5Ahv0YWwtRqkL"
-tokenSecret = "tYHwDwLnl1AV56ENC13YkW7NDjllM5NcVmsCX6L4sy9E9"
-basicAuth = "f1a0b8da-0c90-4a51-a26e-584d3bf9e6e8"
+consumerKey = "dcbVy1h8Mrdd6ZhAX7KwYyx4a"
+consumerSecret = "JJQJe2OrgAu0nYaJYVrKmt2iiyQCGij9H7xifZvjJyt4ZKeWrp"
+accessToken = "1021945507516739584-pmEQangAGNfZC9hv2kIwBUR7Fy1sR0"
+tokenSecret = "RlOM9DRMG0WRpthCd7XehFR5Cy3qJBYfoVpWJ7gS6vFzr"
+basicAuth = "f1a0b8da-0c90-4a51-a26e-584d3bf9e6e8" #Not sure what this is anymore.
 
 key_secret = '{}:{}'.format(consumerKey, consumerSecret).encode('ascii')
 b64_encode_key = base64.b64encode(key_secret)
@@ -24,3 +24,6 @@ auth_data = {
 
 auth_resp = requests.post(auth_url, headers=auth_headers, data=auth_data)
 access_token = auth_resp.json()['access_token']
+# access_token = auth_resp.json()
+print(accessToken)
+print(auth_headers)
