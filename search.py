@@ -14,6 +14,8 @@ search_url = '{}1.1/search/tweets.json'.format(base_url)
 
 search_resp = requests.get(search_url, headers=search_headers, params=search_params)
 print(search_resp.status_code)
-tweet_data = search_resp.json()
-for x in tweet_data['statuses']:
-    print(x['text'] + '\n')
+tweet_data = search_resp.json()['statuses']
+
+for x in range(0, (search_params['count'])):
+    print(x)
+    print tweet_data[x]['text'] + '\n'
