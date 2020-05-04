@@ -8,7 +8,7 @@ import json
 class TwitterAccess:
     def __init__(self):
         self.oauth_callback = 'https://daimenambersapp.com/callback'
-        self.url_encode_callback = urllib.quote(self.oauth_callback)
+        self.url_encode_callback = urllib.parse.quote(self.oauth_callback)
         self.consumerKey = "dcbVy1h8Mrdd6ZhAX7KwYyx4a"
         self.consumerSecret = "JJQJe2OrgAu0nYaJYVrKmt2iiyQCGij9H7xifZvjJyt4ZKeWrp"
         self.accessToken = "1021945507516739584-pmEQangAGNfZC9hv2kIwBUR7Fy1sR0"
@@ -56,9 +56,9 @@ class TwitterAccess:
         oauth_params = {
             'oauth_callback': self.url_encode_callback
         }
-        print oauth_headers
+        print(oauth_headers)
         oauth_resp = requests.post(url, headers=oauth_headers, params=oauth_params)
-        print oauth_resp.status_code
+        print(oauth_resp.status_code)
 
 
     def oauthAuthorize(self): #Doesn't work at the moment
@@ -67,8 +67,8 @@ class TwitterAccess:
             'oauth_token': 'Inp3ygAAAAAA_5I1AAABbRLnomU'
         }
         response = requests.get(url, params=params)
-        print response
-        print response.status_code
+        print(response)
+        print(response.status_code)
         # print response.json()
 
     def newTweet(self):
@@ -84,7 +84,7 @@ class TwitterAccess:
                 'Authorization': twitter_sign.create_auth_header(oauth_parameters)
                 }
         response = requests.post(url, headers=headers, params=url_parameters)
-        print response.status_code
+        print(response.status_code)
 
     def curateStory(self):
         method = "post"
@@ -99,10 +99,10 @@ class TwitterAccess:
         headers = {'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': twitter_sign.create_auth_header(oauth_parameters)}
         response = requests.post(url, headers=headers, params=url_parameters)
-        print response.status_code
-        print response.json()['response']['timeline_id']
+        print(response.status_code)
+        print(response.json()['response']['timeline_id'])
         timeline_id = response.json()['response']['timeline_id']
-        return timeline_id
+        return(timeline_id)
 
     def getCollection(self):
         method = "get"
@@ -116,8 +116,8 @@ class TwitterAccess:
         headers = {'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': twitter_sign.create_auth_header(oauth_parameters)}
         response = requests.get(url, headers=headers, params=url_parameters)
-        print response.status_code
-        print response.json()['response']['timeline_id']
+        print(response.status_code)
+        print(response.json()['response']['timeline_id'])
 
     def getHomeTimeLine(self):
         method = "get"
@@ -132,10 +132,10 @@ class TwitterAccess:
         headers = {'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': twitter_sign.create_auth_header(oauth_parameters)}
         response = requests.get(url, headers=headers, params=url_parameters)
-        print response.status_code
+        print(response.status_code)
         for i in range(url_parameters['count']):
             print(i)
-            print response.json()[i]['text'] + '\n'
+            print(response.json()[i]['text'] + '\n')
 
 
 def main():

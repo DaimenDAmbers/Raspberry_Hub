@@ -1,4 +1,4 @@
-import ConfigParser
+import configparser
 import urllib
 import random
 import base64
@@ -13,13 +13,13 @@ import json
 
 def escape(s):
     """Percent Encode the passed in string"""
-    return urllib.quote(s, safe='~')
+    byte
+    return urllib.parse.quote(s, safe='~')
 
 
 def get_nonce():
     """Unique token generated for each request"""
-    n = base64.b64encode(
-        ''.join([str(random.randint(0, 9)) for i in range(24)]))
+    n = base64.b64encode(''.join([str(random.randint(0, 9)) for i in range(24)]))
     return n
 
 
@@ -122,7 +122,7 @@ def get_oauth_parameters(consumer_key, access_token):
 
 if __name__ == '__main__':
     #Read the Config File to get the twitter keys and tokens
-    config = ConfigParser.RawConfigParser()
+    config = configparser.RawConfigParser()
     config.read('settings.cfg')
 
     #method, url and parameters to call
@@ -161,5 +161,5 @@ if __name__ == '__main__':
 
     r = requests.get(url, headers=headers)
 
-    print json.dumps(json.loads(r.text), sort_keys=False, indent=4)
-    print headers
+    print(json.dumps(json.loads(r.text), sort_keys=False, indent=4))
+    print(headers)
