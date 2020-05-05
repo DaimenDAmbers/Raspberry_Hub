@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import configparser
 import urllib
 import random
@@ -10,30 +9,13 @@ import collections
 import hashlib
 import requests
 import json
-=======
-from access import access_token, requests, base_url
->>>>>>> 83d996bbd1561cfa3345026ff40acaa679893a34
 
-search_headers = {
-    'Authorization': 'Bearer {}'.format(access_token)
-}
-
-<<<<<<< HEAD
 def escape(s):
     """Percent Encode the passed in string"""
     byte
     return urllib.parse.quote(s, safe='~')
-=======
-search_params = {
-    'q': 'General Election',
-    'result_type': 'recent',
-    'count': 2
-}
->>>>>>> 83d996bbd1561cfa3345026ff40acaa679893a34
 
-search_url = '{}1.1/search/tweets.json'.format(base_url)
 
-<<<<<<< HEAD
 def get_nonce():
     """Unique token generated for each request"""
     n = base64.b64encode(''.join([str(random.randint(0, 9)) for i in range(24)]))
@@ -180,12 +162,3 @@ if __name__ == '__main__':
 
     print(json.dumps(json.loads(r.text), sort_keys=False, indent=4))
     print(headers)
-=======
-search_resp = requests.get(search_url, headers=search_headers, params=search_params)
-print(search_resp.status_code)
-tweet_data = search_resp.json()['statuses']
-
-for x in range(0, (search_params['count'])):
-    print(x)
-    print(tweet_data[x]['text'] + '\n')
->>>>>>> 83d996bbd1561cfa3345026ff40acaa679893a34
