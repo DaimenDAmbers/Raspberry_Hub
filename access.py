@@ -9,10 +9,7 @@ class TwitterAccess:
     def __init__(self):
         self.oauth_callback = 'https://daimenambersapp.com/callback'
         self.url_encode_callback = urllib.parse.quote(self.oauth_callback)
-        self.consumerKey = "dcbVy1h8Mrdd6ZhAX7KwYyx4a"
-        self.consumerSecret = "JJQJe2OrgAu0nYaJYVrKmt2iiyQCGij9H7xifZvjJyt4ZKeWrp"
-        self.accessToken = "1021945507516739584-pmEQangAGNfZC9hv2kIwBUR7Fy1sR0"
-        self.tokenSecret = "RlOM9DRMG0WRpthCd7XehFR5Cy3qJBYfoVpWJ7gS6vFzr"
+        ### Tokens go here ###
         self.basicAuth = "f1a0b8da-0c90-4a51-a26e-584d3bf9e6e8" #Not sure what this is anymore.
 
         self.key_secret = '{}:{}'.format(self.consumerKey, self.consumerSecret).encode('ascii')
@@ -24,7 +21,7 @@ class TwitterAccess:
         self.oauth_token = 'TGgRFAAAAAAA_5I1AAABbRNJI3g'
         self.oauth_token_secret='goXPvI46rhofKOxXMTv9hRxfApsZ50g8'
 
-        # self.bearer_token = 'AAAAAAAAAAAAAAAAAAAAADWS%2FwAAAAAAF5NP0CqldNv2XvLeBcH%2B7ZH6xQo%3DcOOOwhYwsKq3i5M3H7aMLYu7rhT3p4bqnEcJ5pUthsznW7WQ9z'
+        self.bearer_token = 'AAAAAAAAAAAAAAAAAAAAADWS%2FwAAAAAAF5NP0CqldNv2XvLeBcH%2B7ZH6xQo%3DcOOOwhYwsKq3i5M3H7aMLYu7rhT3p4bqnEcJ5pUthsznW7WQ9z'
 
     def authorizeToken(self):
         url = '{}oauth2/token'.format(self.base_url)
@@ -37,7 +34,7 @@ class TwitterAccess:
             'grant_type': 'client_credentials'
         }
 
-        auth_resp = requests.post(url, headers=auth_headers, data=auth_data)
+        auth_resp = requests.post(url, headers=auth_headers, data=auth_data, verify=False)
         access_token = auth_resp.json()['access_token']
         return access_token
 
@@ -140,7 +137,10 @@ class TwitterAccess:
 
 def main():
     newAuth = TwitterAccess()
-    newAuth.getHomeTimeLine()
+    token = newAuth.authorizeToken()
+    print(token)
+    # newAuth.getHomeTimeLine()
+    # print(newAuth.accessToken)
 
 if __name__ == '__main__':
     main()
