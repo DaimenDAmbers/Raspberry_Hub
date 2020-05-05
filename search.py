@@ -20,9 +20,15 @@ def main():
     print(search_resp.status_code)
     tweet_data = search_resp.json()['statuses']
 
+<<<<<<< HEAD
     for x in range(0, (search_params['count'])):
         print(x)
         print(tweet_data[x]['text'] + '\n')
 
 if __name__ == '__main__':
     main()
+=======
+for x in range(0, (search_params['count'])):
+    print(x)
+    print(tweet_data[x]['text'] + '\n')
+>>>>>>> 83d996bbd1561cfa3345026ff40acaa679893a34

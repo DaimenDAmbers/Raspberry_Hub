@@ -9,7 +9,14 @@ class TwitterAccess:
     def __init__(self):
         self.oauth_callback = 'https://daimenambersapp.com/callback'
         self.url_encode_callback = urllib.parse.quote(self.oauth_callback)
+<<<<<<< HEAD
         ### Tokens go here ###
+=======
+        self.consumerKey = "dcbVy1h8Mrdd6ZhAX7KwYyx4a"
+        self.consumerSecret = "JJQJe2OrgAu0nYaJYVrKmt2iiyQCGij9H7xifZvjJyt4ZKeWrp"
+        self.accessToken = "1021945507516739584-pmEQangAGNfZC9hv2kIwBUR7Fy1sR0"
+        self.tokenSecret = "RlOM9DRMG0WRpthCd7XehFR5Cy3qJBYfoVpWJ7gS6vFzr"
+>>>>>>> 83d996bbd1561cfa3345026ff40acaa679893a34
         self.basicAuth = "f1a0b8da-0c90-4a51-a26e-584d3bf9e6e8" #Not sure what this is anymore.
 
         self.key_secret = '{}:{}'.format(self.consumerKey, self.consumerSecret).encode('ascii')
