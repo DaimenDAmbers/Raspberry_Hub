@@ -1,32 +1,33 @@
+import os
 import http.server
 import socketserver
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
-Handler = http.server.SimpleHTTPRequestHandler
 
+class WebServerHandler(BaseHTTPRequestHandler):
 
-# class WebServerHandler(BaseHTTPRequestHandler):
-#
-#     def do_GET(self):
-#         if self.path.endswith("/index.html"):
-#             self.send_response(200)
-#             self.send_header('Content-type', 'text/html')
-#             self.end_headers()
-#             # message = ""
-#             # message += "<html><body>Hello!</body></html>"
-#             # self.wfile.write(message)
-#             # print(message)
-#             return
-#         else:
-#             self.send_error(404, 'File Not Found: %s' % self.path)
+    def do_GET(self):
+        try:
+            if self.path.endswith("index.html"):
+                f = open(os.curdir + os.sep + self.path)
+
+                self.send_response(200)
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()
+                self.wfile.write(f.read())
+
+                f.close()
+                return
+
+        except IOError:
+            self.send_error(404, 'File Not Found: %s' % self.path)
 
 
 def main():
     try:
-        port = 8080
-        with socketserver.TCPServer(("", port), Handler) as httpd:
-            print("Web Server running on port %s" % port)
-            httpd.serve_forever()
-            # server = HTTPServer(('', port), WebServerHandler)
+        server = HTTPServer(('', 8080), WebServerHandler)
+        print 'started httpserver...'
+        server.serve_forever()
 
     except KeyboardInterrupt:
         print(" ^C entered, stopping web server....")
