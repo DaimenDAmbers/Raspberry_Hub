@@ -5,7 +5,7 @@ import requests
 def main():
     instance = TwitterAccess()
     search_headers = {
-        'Authorization': 'Bearer {}'.format(instance.bearer_token)
+        'Authorization': 'Bearer {}'.format(instance.authorizeToken())
     }
 
     search_params = {

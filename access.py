@@ -3,6 +3,7 @@ import base64
 import urllib
 import twitter_sign
 import json
+from tokens import Tokens
 
 
 class TwitterAccess:
@@ -10,20 +11,15 @@ class TwitterAccess:
         self.oauth_callback = 'https://daimenambersapp.com/callback'
         self.url_encode_callback = urllib.parse.quote(self.oauth_callback)
         ### Tokens go here ###
-        self.basicAuth = "f1a0b8da-0c90-4a51-a26e-584d3bf9e6e8" #Not sure what this is anymore.
+        self.tokens = Tokens()
 
-        self.key_secret = '{}:{}'.format(self.consumerKey, self.consumerSecret).encode('ascii')
+        self.key_secret = '{}:{}'.format(self.tokens.consumerKey, self.tokens.consumerSecret).encode('ascii')
         self.b64_encode_key = base64.b64encode(self.key_secret)
         self.b64_decode_key = self.b64_encode_key.decode('ascii')
 
         self.base_url = 'https://api.twitter.com/'
 
-        self.oauth_token = 'TGgRFAAAAAAA_5I1AAABbRNJI3g'
-        self.oauth_token_secret='goXPvI46rhofKOxXMTv9hRxfApsZ50g8'
-
-        self.bearer_token = 'AAAAAAAAAAAAAAAAAAAAADWS%2FwAAAAAAF5NP0CqldNv2XvLeBcH%2B7ZH6xQo%3DcOOOwhYwsKq3i5M3H7aMLYu7rhT3p4bqnEcJ5pUthsznW7WQ9z'
-
-    def authorizeToken(self):
+    def authorizeToken(self): # Definition to return the bearer token
         url = '{}oauth2/token'.format(self.base_url)
         auth_headers = {
             'Authorization': 'Basic {}'.format(self.b64_decode_key),
@@ -35,8 +31,8 @@ class TwitterAccess:
         }
 
         auth_resp = requests.post(url, headers=auth_headers, data=auth_data, verify=False)
-        access_token = auth_resp.json()['access_token']
-        return access_token
+        bearer_token = auth_resp.json()['access_token']
+        return bearer_token
 
     def oauthRequest(self): #Not needed at the moment
         method = "post"
@@ -56,17 +52,6 @@ class TwitterAccess:
         print(oauth_headers)
         oauth_resp = requests.post(url, headers=oauth_headers, params=oauth_params)
         print(oauth_resp.status_code)
-
-
-    def oauthAuthorize(self): #Doesn't work at the moment
-        url = '{}oauth/authorize'.format(self.base_url)
-        params = {
-            'oauth_token': 'Inp3ygAAAAAA_5I1AAABbRLnomU'
-        }
-        response = requests.get(url, params=params)
-        print(response)
-        print(response.status_code)
-        # print response.json()
 
     def newTweet(self):
         method = "post"
@@ -124,7 +109,7 @@ class TwitterAccess:
             'count': 10,
             'exclude_replies': True
         }
-        oauth_parameters = twitter_sign.get_oauth_parameters(self.consumerKey, self.accessToken)
+        oauth_parameters = twitter_sign.get_oauth_parameters(self.tokens.consumerKey, self.tokens.accessToken)
         oauth_parameters['oauth_signature'] = twitter_sign.generate_signature(method, url, url_parameters, oauth_parameters, self.consumerKey, self.consumerSecret, self.tokenSecret)
         headers = {'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': twitter_sign.create_auth_header(oauth_parameters)}
@@ -137,9 +122,9 @@ class TwitterAccess:
 
 def main():
     newAuth = TwitterAccess()
-    token = newAuth.authorizeToken()
-    print(token)
-    # newAuth.getHomeTimeLine()
+    # token = newAuth.authorizeToken()
+    # print(token)
+    newAuth.getHomeTimeLine()
     # print(newAuth.accessToken)
 
 if __name__ == '__main__':
