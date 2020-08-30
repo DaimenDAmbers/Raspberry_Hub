@@ -12,13 +12,13 @@ import json
 
 def escape(s):
     """Percent Encode the passed in string"""
-    byte
     return urllib.parse.quote(s, safe='~')
 
 
-def get_nonce():
+def get_nonce(lenth=24):
     """Unique token generated for each request"""
-    n = base64.b64encode(''.join([str(random.randint(0, 9)) for i in range(24)]))
+    n = ''.join([str(random.randint(0,9)) for i in range(lenth)])
+
     return n
 
 
@@ -55,16 +55,18 @@ def collect_parameters(oauth_parameters, status, url_parameters):
         temp['status'] = status
 
     #Add the url_parameters to the temp hash
-    for k, v in url_parameters.iteritems():
+    for k, v in url_parameters.items():
         temp[k] = v
 
     return temp
 
 
-def calculate_signature(signing_key, signature_base_string):
+def calculate_signature(signing_key, signature_base_string): #Rewrite this
     """Calculate the signature using SHA1"""
-    hashed = hmac.new(signing_key, signature_base_string, hashlib.sha1)
+    byte_signing_key = str.encode(signing_key)
+    byte_signature_base_string = str.encode(signature_base_string)
 
+    hashed = hmac.new(byte_signing_key, byte_signature_base_string, hashlib.sha1)
     sig = binascii.b2a_base64(hashed.digest())[:-1]
 
     return escape(sig)
@@ -85,7 +87,7 @@ def create_auth_header(parameters):
     ordered_parameters = {}
     ordered_parameters = collections.OrderedDict(sorted(parameters.items()))
     auth_header = (
-        '%s="%s"' % (k, v) for k, v in ordered_parameters.iteritems())
+        '%s="%s"' % (k, v) for k, v in ordered_parameters.items())
     val = "OAuth " + ', '.join(auth_header)
     return val
 
@@ -97,7 +99,7 @@ def stringify_parameters(parameters):
     ordered_parameters = collections.OrderedDict(sorted(parameters.items()))
 
     counter = 1
-    for k, v in ordered_parameters.iteritems():
+    for k, v in ordered_parameters.items():
         output += escape(str(k)) + '=' + escape(str(v))
         if counter < len(ordered_parameters):
             output += '&'
@@ -133,8 +135,7 @@ if __name__ == '__main__':
 
     #configuration hash for the keys
     keys = {
-        "twitter_consumer_secret": config.get(
-            'Keys', 'twitter_consumer_secret'),
+        "twitter_consumer_secret": config.get('Keys', 'twitter_consumer_secret'),
         "twitter_consumer_key": config.get('Keys', 'twitter_consumer_key'),
         "access_token": config.get('Keys', 'access_token'),
         "access_token_secret": config.get('Keys', 'access_token_secret')
@@ -156,7 +157,7 @@ if __name__ == '__main__':
 
     headers = {'Authorization': create_auth_header(oauth_parameters)}
 
-    url += '?' + urllib.urlencode(url_parameters)
+    url += '?' + urllib.parse.urlencode(url_parameters)
 
     r = requests.get(url, headers=headers)
 

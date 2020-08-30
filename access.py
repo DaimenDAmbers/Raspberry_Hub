@@ -9,7 +9,7 @@ from tokens import Tokens
 class TwitterAccess:
     def __init__(self):
         self.oauth_callback = 'https://daimenambersapp.com/callback'
-        self.url_encode_callback = urllib.parse.quote(self.oauth_callback)
+        # self.url_encode_callback = urllib.parse.quote(self.oauth_callback)
         ### Tokens go here ###
         self.tokens = Tokens()
 
@@ -110,7 +110,7 @@ class TwitterAccess:
             'exclude_replies': True
         }
         oauth_parameters = twitter_sign.get_oauth_parameters(self.tokens.consumerKey, self.tokens.accessToken)
-        oauth_parameters['oauth_signature'] = twitter_sign.generate_signature(method, url, url_parameters, oauth_parameters, self.consumerKey, self.consumerSecret, self.tokenSecret)
+        oauth_parameters['oauth_signature'] = twitter_sign.generate_signature(method, url, url_parameters, oauth_parameters, self.tokens.consumerKey, self.tokens.consumerSecret, self.tokens.accessSecret)
         headers = {'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': twitter_sign.create_auth_header(oauth_parameters)}
         response = requests.get(url, headers=headers, params=url_parameters)
@@ -125,7 +125,7 @@ def main():
     # token = newAuth.authorizeToken()
     # print(token)
     newAuth.getHomeTimeLine()
-    # print(newAuth.accessToken)
+    # print(newAuth.authorizeToken())
 
 if __name__ == '__main__':
     main()
