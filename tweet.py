@@ -1,4 +1,4 @@
 from access import TwitterAccess
 
 tweet = TwitterAccess()
-tweet.newTweet()
+tweet.new_tweet()

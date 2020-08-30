@@ -5,7 +5,7 @@ import threading, time
 request = TwitterAccess()
 if __name__ == "__main__":
     while True:
-        request.getHomeTimeLine()
+        request.get_home_timeLine()
         time.sleep(5)
 
-## Next you'll need to create a an html page that will take in the object received from this method ##
+"""Next you'll need to create a an html page that will take in the object received from this method"""
