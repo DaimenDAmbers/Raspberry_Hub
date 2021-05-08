@@ -18,7 +18,7 @@
   "homepage": "https://github.com/DRockSwagMoney/Raspberry_Hub#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-twitter-auth": "0.0.12",
